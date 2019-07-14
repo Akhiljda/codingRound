@@ -1,0 +1,21 @@
+Review Comments:
+- Removed Gradle files as Maven will be used
+- Default packages should not be used.
+- No use of abstraction; will be using Page object model [POM] to implement it
+- No use of Encapsulation; will be using Data access object[DAO] design pattern to implement it
+- Everything stuffed into a single file; will be taking out global configuration values from it & create a properties file to achieve it
+- Will be seperating test data & will be creating one JSON/Excel/properties file to list that data.
+- Test data needs to be organised in a defined structure; i propose using below sctructure
+	-Sprint X
+		- JIRA - A
+		- JIRA - B
+	- Sprint Y
+		- Jira - C
+		- Jira - D
+i.e. segrigating the data based on sprints; hava one file per sprint & within that file; have different JIRA ticket number section; have your test data in that section.
+- method 'setDriverPath' is common in all the scripts, it should be taken out & moved into a seperate class /utility
+- Strategy used to identify webElemenst seems to be inadequate, they doesn't seems to be unique 
+- Use a seperate property file per page to maintain these locators on that page; so that they can reused
+
+-- don't see any use of TestNG done in the scripts, use atleast below annotations for a better testEngine
+--	TestNg.xml file missing; need to add it & list the tests to be executed there.
