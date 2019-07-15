@@ -6,16 +6,16 @@ import java.util.Properties;
 
 public class PageLocatorDriver{
 		
-	private Properties property = null;
+	private static Properties property = null;
 	
-	public Properties getPropertyInstance() {
+	public static Properties getPropertyInstance () {
 		return property;
 	}
-	
-	public void loadPropertyFile(String path) {
+		
+	public void loadPropertyFile(String fileName) {
 		
 		try {
-			FileInputStream fs = new FileInputStream(path);
+			FileInputStream fs = new FileInputStream(System.getProperty("user.dir")+"\\Resources\\PageLocators\\"+fileName);
 			property.load(fs);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -25,7 +25,7 @@ public class PageLocatorDriver{
 	}
 	
 	
-	protected PageLocatorDriver() {
+	public PageLocatorDriver() {
 		if (property == null) {
 			property = new Properties();
 		}

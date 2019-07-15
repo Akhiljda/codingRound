@@ -1,7 +1,28 @@
 package com.cleartrip.pom;
 
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import com.cleartrip.drivers.PageLocatorDriver;
+import com.cleartrip.utilities.WebElementsUtility;
+
 public class TopMenuDefault_Pom {
 
+	private WebElement YourTrips_Menu_xpath;
+
+	
+	private PageLocatorDriver prop1 = new PageLocatorDriver();
+	private WebElementsUtility web = new WebElementsUtility();			
+	private Properties p1 = PageLocatorDriver.getPropertyInstance();
+	
+	public TopMenuDefault_Pom(WebDriver wd) {
+		prop1.loadPropertyFile("SignIn.properties");	
+		YourTrips_Menu_xpath = wd.findElement(By.xpath(p1.getProperty("YourTrips_Menu_xpath")));
+	}
+	
 	public void clickCurrencyMenu() {
 		
 	}
@@ -11,6 +32,6 @@ public class TopMenuDefault_Pom {
 	}
 	
 	public void clickYourTripsMenu() {
-		
+		web.clickButton(YourTrips_Menu_xpath);
 	}
 }

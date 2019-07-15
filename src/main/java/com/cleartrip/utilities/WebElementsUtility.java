@@ -5,10 +5,10 @@ import org.openqa.selenium.support.ui.Select;
 
 public class WebElementsUtility {
 	
-	public void fillDate() {
-		
+	public String getText(WebElement element) {		
+		return element.getText();		
 	}
-	
+		
 	public void fillTextBox(WebElement element, String text) {
 		element.sendKeys(text);
 	}
