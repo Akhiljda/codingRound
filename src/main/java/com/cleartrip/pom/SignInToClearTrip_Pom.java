@@ -33,4 +33,12 @@ public class SignInToClearTrip_Pom {
 	public void clickSignInButton() {
 		web.clickButton(SignIn_Btn_xpath);
 	}
+	
+	public boolean verifyHotelsPageLoaded(WebDriver wd) {
+		
+		String text =p1.getProperty("Password_TB_xpath");
+		
+		return web.verifyPageLoad(wd, text);
+		
+	}
 }

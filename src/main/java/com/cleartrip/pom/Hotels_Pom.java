@@ -53,4 +53,12 @@ public class Hotels_Pom {
 	public void clickSearchHotelsButton() {
 		web.clickButton(SearchHotels_Btn_xpath);
 	}
+	
+	public boolean verifyHotelsPageLoaded(WebDriver wd) {
+		
+		String text =p1.getProperty("Travellers_DD_xpath");
+		
+		return web.verifyPageLoad(wd, text);
+		
+	}
 }

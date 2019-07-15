@@ -19,6 +19,8 @@ import com.cleartrip.dao.Flights_Dao;
 import com.cleartrip.drivers.BrowserDriver;
 import com.cleartrip.drivers.ConfigDriver;
 import com.cleartrip.pom.Flights_Pom;
+import com.cleartrip.pom.LeftMenuDefault_Pom;
+import com.cleartrip.utilities.WebElementsUtility;
 
 public class FlightBookingTest {
 
@@ -26,14 +28,19 @@ public class FlightBookingTest {
 	Flights_Pom flights_Pom;
 	Flights_Dao flights_Dao = new Flights_Dao();
 	Properties property = new Properties();
-	
-	
+	LeftMenuDefault_Pom leftMenuDefault_Pom;
+	WebElementsUtility webElementsUtility;
+		
 	@BeforeClass
 	public void setUp() {
 		wd = BrowserDriver.getInstance();
+		flights_Pom = new Flights_Pom(wd);
+		leftMenuDefault_Pom = new LeftMenuDefault_Pom(wd);
+		webElementsUtility = new WebElementsUtility();
 		String URL =  ConfigDriver.getInstance().getProperty("url");		
 		wd.get(URL);
 		FileInputStream fs;
+		
 		try {
 			fs = new FileInputStream(System.getProperty("user.dir")+"\\Resources\\TestData\\FlightBookingTest.properties");
 			property.load(fs);
@@ -53,7 +60,8 @@ public class FlightBookingTest {
 		 flights_Dao.setAdults(property.getProperty("adults"));
 		 flights_Dao.setChildren(property.getProperty("children"));
 		 flights_Dao.setInfants(property.getProperty("infants"));
-		 	 
+		 	 		 
+		 leftMenuDefault_Pom.clickFilghtsMenu();
 		 flights_Pom.fillDetailsSearchFlightsSection(flights_Dao);
 		 flights_Pom.clickSearchFlightsButton();
 	     
@@ -61,8 +69,15 @@ public class FlightBookingTest {
 	 
 	@AfterClass
 	public void tearDown() {
-		wd.close();
-		wd.quit();
+		webElementsUtility.closeBrowser(wd);
+		webElementsUtility.quitDriver(wd);		
+		webElementsUtility= null;
+		wd = null;
+		flights_Pom = null; 
+		flights_Dao = null;
+		property = null;
+		leftMenuDefault_Pom = null;
+		
 	}
 	
 

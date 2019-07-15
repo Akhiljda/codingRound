@@ -1,7 +1,11 @@
 package com.cleartrip.utilities;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebElementsUtility {
 	
@@ -30,15 +34,37 @@ public class WebElementsUtility {
 		element.click();
 	}
 	
-	public void closeBrowser() {
-		
+	public void closeBrowser(WebDriver wd) {
+		wd.close();
 	}
 	
-	public void quitDriver() {
-		
+	public void quitDriver(WebDriver wd) {
+		wd.quit();
 	}
 	
 	public void selectAjaxValue() {
 		
+	}
+	
+	public void waitFor(int durationInMilliSeconds) {
+		try {
+            Thread.sleep(durationInMilliSeconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+	}
+	
+	public boolean verifyPageLoad(WebDriver wd, String locator) {
+		WebDriverWait wait=new WebDriverWait(wd, 20);
+		
+		WebElement pageLoad = null;
+		pageLoad= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+		wait = null;
+		if (pageLoad == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }

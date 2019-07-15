@@ -5,6 +5,8 @@ import java.util.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.cleartrip.dao.Flights_Dao;
 import com.cleartrip.drivers.PageLocatorDriver;
@@ -82,4 +84,11 @@ public class Flights_Pom {
 		
 	}
 	
+	public boolean verifyFlightsPageLoaded(WebDriver wd) {
+		
+		String text =p1.getProperty("Adults_DD_xpath");
+		
+		return web.verifyPageLoad(wd, text);
+		
+	}
 }
