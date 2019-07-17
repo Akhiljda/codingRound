@@ -54,7 +54,7 @@ public class WebElementsUtility {
         }
 	}
 	
-	public boolean verifyPageLoad(WebDriver wd, String locator) {
+	public boolean verifyWebElementLoad(WebDriver wd, String locator) {
 		WebDriverWait wait=new WebDriverWait(wd, 20);
 		
 		WebElement pageLoad = null;

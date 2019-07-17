@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +19,7 @@ import org.testng.annotations.Test;
 import com.cleartrip.dao.Flights_Dao;
 import com.cleartrip.drivers.BrowserDriver;
 import com.cleartrip.drivers.ConfigDriver;
+import com.cleartrip.drivers.LoggerDriver;
 import com.cleartrip.pom.Flights_Pom;
 import com.cleartrip.pom.LeftMenuDefault_Pom;
 import com.cleartrip.utilities.WebElementsUtility;
@@ -30,15 +32,19 @@ public class FlightBookingTest {
 	Properties property = new Properties();
 	LeftMenuDefault_Pom leftMenuDefault_Pom;
 	WebElementsUtility webElementsUtility;
-		
+	Logger log = LoggerDriver.getInstance();
+	
 	@BeforeClass
 	public void setUp() {
+		System.out.println("I am here!");
+		//log.info("TC: Begin - FlightBookingTest :: Setup() ");
 		wd = BrowserDriver.getInstance();
+		String URL =  ConfigDriver.getInstance().getProperty("url");
+		wd.get(URL);		
 		flights_Pom = new Flights_Pom(wd);
 		leftMenuDefault_Pom = new LeftMenuDefault_Pom(wd);
-		webElementsUtility = new WebElementsUtility();
-		String URL =  ConfigDriver.getInstance().getProperty("url");		
-		wd.get(URL);
+		webElementsUtility = new WebElementsUtility();		
+		System.out.println("URL is: "+URL);		
 		FileInputStream fs;
 		
 		try {
@@ -48,7 +54,7 @@ public class FlightBookingTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		log.info("TC: End - FlightBookingTest :: Setup() ");
 	}
 	
 	 @Test
