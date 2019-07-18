@@ -14,6 +14,9 @@ public class WebElementsUtility {
 	}
 		
 	public void fillTextBox(WebElement element, String text) {
+		
+		System.out.println("element is: "+element.toString());
+		System.out.println("text is: "+text);
 		element.sendKeys(text);
 	}
 	

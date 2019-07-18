@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,12 +33,14 @@ public class FlightBookingTest {
 	Properties property = new Properties();
 	LeftMenuDefault_Pom leftMenuDefault_Pom;
 	WebElementsUtility webElementsUtility;
-	Logger log = LoggerDriver.getInstance();
+	//Logger log = LoggerDriver.getInstance();
+	Logger logger = LogManager.getLogger();
+	//static Logger log = Logger.getLogger(FlightBookingTest.class.getName());
 	
 	@BeforeClass
 	public void setUp() {
 		System.out.println("I am here!");
-		//log.info("TC: Begin - FlightBookingTest :: Setup() ");
+		logger.info("TC: Begin - FlightBookingTest :: Setup() ");
 		wd = BrowserDriver.getInstance();
 		String URL =  ConfigDriver.getInstance().getProperty("url");
 		wd.get(URL);		
@@ -54,7 +57,7 @@ public class FlightBookingTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		log.info("TC: End - FlightBookingTest :: Setup() ");
+		//log.info("TC: End - FlightBookingTest :: Setup() ");
 	}
 	
 	 @Test
