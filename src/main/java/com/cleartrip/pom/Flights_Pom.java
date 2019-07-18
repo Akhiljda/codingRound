@@ -42,6 +42,9 @@ public class Flights_Pom {
 				break;
 			}		
 		}
+		
+		System.out.println("From value is: "+flights_dao.getFrom());
+		
 		web.fillTextBox(wd.findElement(By.xpath(p1.getProperty("From_DD_xpath"))), flights_dao.getFrom());
 		boolean fromRecordDisplayed = web.verifyWebElementLoad(wd, p1.getProperty("From_DD_ResultList_Record1_xpath"));
 		
