@@ -8,4 +8,4 @@ build
 **/RemoteSystemsTempFiles
 **/.project
 **/Snapshots
-**/test-output/
+/test-output/*
