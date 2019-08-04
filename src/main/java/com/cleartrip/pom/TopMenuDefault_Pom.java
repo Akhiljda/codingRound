@@ -17,7 +17,10 @@ public class TopMenuDefault_Pom {
 	private WebDriver wd;
 	
 	public TopMenuDefault_Pom(WebDriver wd) {
-		prop1.loadPropertyFile("SignIn.properties");			
+		System.out.println("TopMenuDefault_Pom : Begin!");
+		prop1.loadPropertyFile("TopMenu.properties");	
+		this.wd = wd;
+		System.out.println("TopMenuDefault_Pom : End!");
 	}
 	
 	public void clickCurrencyMenu() {
@@ -29,6 +32,13 @@ public class TopMenuDefault_Pom {
 	}
 	
 	public void clickYourTripsMenu() {
-		web.clickButton(wd.findElement(By.xpath(p1.getProperty("YourTrips_Menu_xpath"))));
+		System.out.println("TopMenuDefault_Pom clickYourTripsMenu: Begin!");
+		boolean flag = web.verifyWebElementLoad(wd, p1.getProperty("YourTrips_Menu_xpath"));
+		
+		System.out.println("flag is: "+flag);
+		WebElement ed = wd.findElement(By.xpath(p1.getProperty("YourTrips_Menu_xpath")));
+		System.out.println("ed is: "+ed.toString());
+		web.clickButton(ed);
+		System.out.println("TopMenuDefault_Pom clickYourTripsMenu: End!");
 	}
 }

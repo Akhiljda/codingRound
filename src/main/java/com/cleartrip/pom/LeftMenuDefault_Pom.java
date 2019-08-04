@@ -17,15 +17,21 @@ public class LeftMenuDefault_Pom {
 	private WebDriver wd;
 	
 	public LeftMenuDefault_Pom(WebDriver wd) {
+		System.out.println("LeftMenuDefault_Pom : Begin!");
 		prop1.loadPropertyFile("LeftMenuDefault.properties");	
 		this.wd = wd;
+		System.out.println("LeftMenuDefault_Pom : End!");
 						
 	}
-	public void clickFilghtsMenu() {		
+	public void clickFilghtsMenu() {	
+		System.out.println("LeftMenuDefault_Pom clickFilghtsMenu: Begin!");
 		web.clickButton(wd.findElement(By.xpath(p1.getProperty("Flights_Tab_xpath"))));
+		System.out.println("LeftMenuDefault_Pom clickFilghtsMenu: End!");
 	}
 	
 	public void clickHotelsMenu() {		
+		System.out.println("LeftMenuDefault_Pom clickHotelsMenu: Begin!");
 		web.clickButton(wd.findElement(By.xpath(p1.getProperty("Hotels_Tab_xpath"))));
+		System.out.println("LeftMenuDefault_Pom clickHotelsMenu: End!");
 	}
 }

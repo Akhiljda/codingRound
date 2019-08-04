@@ -27,7 +27,7 @@ public class HandleDate {
 	List<WebElement> dateElements;
 	
 	public void selectDate(WebDriver wd, String dateText) {
-			
+		System.out.println("HandleDate selectDate: Begin!");
 		PageLocatorDriver prop1 = new PageLocatorDriver();
 		WebElementsUtility web = new WebElementsUtility();
 		
@@ -60,28 +60,59 @@ public class HandleDate {
 		
 		String monthName = this.getMonthName(monthInt);
 
-		boolean flag = false; 
+		System.out.println("monthInt is: "+monthInt );
+		System.out.println("yearInt is: "+yearInt );
+		System.out.println("dateInt is: "+dateInt );
+		System.out.println("monthName is: "+monthName );
 		
+		
+		boolean flag = false; 
+		boolean flag2 = false;
 		
 		
 		do {
 			elementMonth = wd.findElement(By.xpath(MonthName_Text_xpath));
 			elementYear = wd.findElement(By.xpath(Year_Text_xpath));
-			
+			flag2 = false;
 			if (web.getText(elementYear).equalsIgnoreCase((new Integer(yearInt)).toString()))  {
+				System.out.println("In outer If" );
 				if (web.getText(elementMonth).equalsIgnoreCase(monthName)) {
+					System.out.println("In Inner If" );
 					dateElements = wd.findElements(By.xpath(Dates_List_xpath));
 					for (WebElement ele : dateElements ) {
 						if(web.getText(ele).equalsIgnoreCase((new Integer(dateInt)).toString())) {
+							System.out.println("InnnerMost If" );
 							elementDate = ele;
+							System.out.println("elementDate is: "+elementDate.toString() );
+							web.clickButton(elementDate);
+							flag = true;
 							break;
 						}
 					}
 				}
 				else {
-					web.clickButton(elementNextMonth);
-					flag = elementNextMonth.isEnabled();												
-						
+					try {
+						System.out.println("elementNextMonth is: "+elementNextMonth.toString() );
+						flag2 = elementNextMonth.isEnabled();
+						System.out.println("Checking flag before: "+flag);
+						web.clickButton(elementNextMonth);
+						web.waitFor(3000);												
+					}
+					catch (Exception e) {
+						System.out.println("In catch");
+						//e.printStackTrace();
+						elementNextMonth = wd.findElement(By.xpath(NextMonth_Btn_xpath));														
+						flag2 = elementNextMonth.isEnabled();
+						//web.takeSnapShot(wd,  "D://TestVagrant//codingRound//Snapshots//s5.png");
+						System.out.println("Catch clause: "+flag);
+					}
+																	
+					if (flag2 == true) {
+						flag = false;
+					}
+					else {
+						flag = true;
+					}
 				}
 			}
 			else {
@@ -90,22 +121,27 @@ public class HandleDate {
 			}
 			
 		}while(flag == false);
+		System.out.println("HandleDate selectDate: End!");
 		
 	}
 	
 	public String getMonthName(int monthIndex) {
+		System.out.println("HandleDate getMonthName: BeginOnly");
          return new DateFormatSymbols().getMonths()[monthIndex].toString();
     }
 	 
 	public int  getMonth(Calendar c1) {		
+		System.out.println("HandleDate getMonth: BeginOnly");
 		return c1.get(Calendar.MONTH);		
 	}
 	
 	public int  getYear(Calendar c1) {		
+		System.out.println("HandleDate getYear: BeginOnly");
 		return c1.get(Calendar.YEAR);		
 	}
 	
-	public int  getDate(Calendar c1) {		
+	public int  getDate(Calendar c1) {	
+		System.out.println("HandleDate getDate: BeginOnly");
 		return c1.get(Calendar.DATE);		
 	}
 	

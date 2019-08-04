@@ -17,11 +17,15 @@ public class YourTripsMenu_Pom {
 	private WebDriver wd;
 	
 	public YourTripsMenu_Pom(WebDriver wd) {
+		System.out.println("YourTripsMenu_Pom : Begin!");
 		this.wd = wd;
-		prop1.loadPropertyFile("SignIn.properties");			
+		prop1.loadPropertyFile("YourTripsMenu.properties");
+		System.out.println("YourTripsMenu_Pom : End!");
 	}
 	
 	public void clickSignInButton() {
+		System.out.println("YourTripsMenu_Pom clickSignInButton: Begin!");
 		web.clickButton(wd.findElement(By.xpath(p1.getProperty("SignIn_MenuItem_Btn_xpath"))));
+		System.out.println("YourTripsMenu_Pom clickSignInButton: End!");
 	}
 }
