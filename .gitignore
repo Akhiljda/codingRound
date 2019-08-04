@@ -7,3 +7,5 @@ build
 **/.settings
 **/RemoteSystemsTempFiles
 **/.project
+**/Snapshots
+**/test-output/
